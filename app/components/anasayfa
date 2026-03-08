@@ -1,0 +1,36 @@
+'use client';
+
+import React, { useState } from 'react';
+import Header from '../components/layout/Header';
+import Categories from '../components/categories/Categories';
+import Brands from '../components/brands/Brands';
+import Chat from '../components/chat/Chat';
+import Listings from '../components/listings/Listings';
+import Footer from '../components/layout/Footer';
+
+export default function HomePage() {
+  const [showChat, setShowChat] = useState(true);
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      
+      <div className="container mx-auto px-4 py-6">
+        <Categories />
+        <Brands />
+        
+        <div className="flex gap-6 mt-6">
+          <div className="flex-1">
+            <Listings />
+          </div>
+          
+          <div className="w-96 flex-shrink-0">
+            <Chat showChat={showChat} setShowChat={setShowChat} />
+          </div>
+        </div>
+      </div>
+      
+      <Footer />
+    </div>
+  );
+}

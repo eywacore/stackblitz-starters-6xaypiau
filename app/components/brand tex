@@ -1,0 +1,47 @@
+'use client';
+
+import React from 'react';
+import { Crown } from 'lucide-react';
+
+type Brand = {
+  id: number;
+  name: string;
+  logo: string;
+  tier: string;
+  desc: string;
+  category: string;
+};
+
+const brands: Brand[] = [
+  { id: 1, name: 'GÜLER SUCUK', logo: '🥩', tier: 'PLATINUM', desc: 'Canlı hayvan alımı', category: 'Gıda' },
+  { id: 2, name: 'JOHN DEERE', logo: '🚜', tier: 'PLATINUM', desc: 'Traktör', category: 'Makine' },
+  { id: 3, name: 'MASSEY', logo: '⭐', tier: 'GOLD', desc: 'Sıfır faiz', category: 'Makine' },
+  { id: 4, name: 'YÖRÜKOĞLU', logo: '🥛', tier: 'GOLD', desc: 'Süt alımı', category: 'Gıda' },
+  { id: 5, name: 'TARİŞ', logo: '🫒', tier: 'SILVER', desc: 'Zeytin alımı', category: 'Kooperatif' },
+];
+
+export default function Brands() {
+  return (
+    <div className="bg-white rounded-2xl p-4 border border-gray-200 shadow-sm mb-6">
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="font-bold text-lg flex items-center gap-2">
+          <Crown size={20} className="text-amber-500" /> MARKA PANOSU
+          <span className="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full">Sponsorlu</span>
+        </h3>
+      </div>
+      
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-2">
+        {brands.map(brand => (
+          <div 
+            key={brand.id} 
+            className="text-center p-2 rounded-xl bg-gradient-to-br from-yellow-50 to-amber-50 border border-amber-200"
+          >
+            <span className="text-3xl block mb-1">{brand.logo}</span>
+            <span className="text-xs font-bold block">{brand.name}</span>
+            <span className="text-[8px] text-gray-500">{brand.tier}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}

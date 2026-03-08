@@ -1,0 +1,190 @@
+'use client';
+
+import React, { useState } from 'react';
+import { Heart, MapPin, Eye, Shield, Grid, Menu } from 'lucide-react';
+
+type Listing = {
+  id: number;
+  title: string;
+  category: string;
+  breed: string;
+  location: string;
+  price: string;
+  priceValue: number;
+  image: string;
+  date: string;
+  views: number;
+  seller: string;
+  verified: boolean;
+  featured?: boolean;
+  vip?: boolean;
+  badge?: string;
+};
+
+const listings: Listing[] = [
+  { 
+    id: 1, 
+    title: 'Simental Gebe Düve', 
+    category: 'Büyükbaş', 
+    breed: 'Simental', 
+    location: 'Sivas/Şarkışla', 
+    price: '92.000 TL', 
+    priceValue: 92000, 
+    image: 'https://images.unsplash.com/photo-1500595046743-cd271d694d30?auto=format&fit=crop&w=400&q=80', 
+    date: '2 saat önce', 
+    views: 234, 
+    seller: 'Ahmet Yılmaz', 
+    verified: true, 
+    featured: true 
+  },
+  { 
+    id: 2, 
+    title: 'Holştayn Süt İneği', 
+    category: 'Büyükbaş', 
+    breed: 'Holştayn', 
+    location: 'Konya/Karatay', 
+    price: '65.000 TL', 
+    priceValue: 65000, 
+    image: 'https://images.unsplash.com/photo-1579152276508-4903328e469e?auto=format&fit=crop&w=400&q=80', 
+    date: '5 saat önce', 
+    views: 156, 
+    seller: 'Mehmet Demir', 
+    verified: true 
+  },
+  { 
+    id: 3, 
+    title: 'Köy Yumurtası (30\'lu)', 
+    category: 'Yerinde Ürün', 
+    breed: 'Yumurta', 
+    location: 'Samsun/Ladik', 
+    price: '120 TL', 
+    priceValue: 120, 
+    image: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=400&q=80', 
+    date: '1 saat önce', 
+    views: 45, 
+    seller: 'Hasan Amca', 
+    verified: true, 
+    badge: 'YERİNDE' 
+  },
+  { 
+    id: 4, 
+    title: 'John Deere 6125R', 
+    category: 'Traktör', 
+    breed: 'John Deere', 
+    location: 'İzmir/Torbalı', 
+    price: '2.850.000 TL', 
+    priceValue: 2850000, 
+    image: 'https://images.unsplash.com/photo-1597250655578-7aa5b5bc7c1d?auto=format&fit=crop&w=400&q=80', 
+    date: '1 gün önce', 
+    views: 567, 
+    seller: 'Anadolu Tarım', 
+    verified: true, 
+    featured: true 
+  }
+];
+
+export default function Listings() {
+  const [viewMode, setViewMode] = useState('grid');
+  const [sortBy, setSortBy] = useState('yeniler');
+
+  return (
+    <div>
+      {/* Başlık ve Sıralama */}
+      <div className="flex items-center justify-between mb-5">
+        <h2 className="text-xl font-bold">Taze İlanlar ({listings.length})</h2>
+        
+        <div className="flex items-center gap-3">
+          <select 
+            value={sortBy} 
+            onChange={(e) => setSortBy(e.target.value)}
+            className="border border-gray-300 rounded-lg px-3 py-1.5 text-sm bg-white"
+          >
+            <option value="yeniler">En Yeniler</option>
+            <option value="fiyat-artan">Fiyat (Artan)</option>
+          </select>
+          
+          <div className="flex border border-gray-300 rounded-lg overflow-hidden">
+            <button 
+              onClick={() => setViewMode('grid')}
+              className={`p-2 ${viewMode === 'grid' ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
+            >
+              <Grid size={18} />
+            </button>
+            <button 
+              onClick={() => setViewMode('list')}
+              className={`p-2 ${viewMode === 'list' ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
+            >
+              <Menu size={18} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Grid Görünüm */}
+      {viewMode === 'grid' ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {listings.map(listing => (
+            <div key={listing.id} className="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-lg">
+              <div className="relative h-48">
+                <img src={listing.image} alt={listing.title} className="w-full h-full object-cover" />
+                <div className="absolute top-3 left-3">
+                  {listing.badge && (
+                    <span className="bg-green-600 text-white text-[10px] font-bold px-2 py-1 rounded-lg">
+                      {listing.badge}
+                    </span>
+                  )}
+                </div>
+                <button className="absolute top-3 right-3 w-8 h-8 bg-white/80 rounded-full flex items-center justify-center">
+                  <Heart size={16} />
+                </button>
+              </div>
+              
+              <div className="p-4">
+                <div className="flex items-center gap-1 text-xs text-gray-500 mb-1">
+                  <MapPin size={12} /> {listing.location} • {listing.date}
+                </div>
+                <h3 className="font-bold text-gray-900 mb-1">{listing.title}</h3>
+                <div className="flex gap-1 text-xs text-gray-600 mb-3">
+                  <span className="bg-gray-100 px-2 py-0.5 rounded-full">{listing.category}</span>
+                  <span className="bg-gray-100 px-2 py-0.5 rounded-full">{listing.breed}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-xl font-bold text-green-600">{listing.price}</span>
+                  <div className="flex items-center gap-1">
+                    <Eye size={12} className="text-gray-400" />
+                    <span className="text-xs text-gray-500">{listing.views}</span>
+                  </div>
+                </div>
+                <div className="mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
+                  <div className="flex items-center gap-1">
+                    <span className="text-xs font-medium">{listing.seller}</span>
+                    {listing.verified && <Shield size={12} className="text-green-600" />}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        // Liste Görünüm
+        <div className="space-y-3">
+          {listings.map(listing => (
+            <div key={listing.id} className="bg-white border border-gray-200 rounded-2xl p-4 flex gap-4">
+              <div className="w-24 h-24 rounded-xl overflow-hidden">
+                <img src={listing.image} alt={listing.title} className="w-full h-full object-cover" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-bold">{listing.title}</h3>
+                <div className="text-sm text-gray-600">{listing.category} • {listing.location}</div>
+                <div className="flex justify-between mt-2">
+                  <span className="text-xl font-bold text-green-600">{listing.price}</span>
+                  <span className="text-sm">{listing.seller}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
