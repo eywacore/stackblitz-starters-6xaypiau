@@ -311,15 +311,47 @@ const SOHBET_ODALARI = [
 ];
 
 // ============================================================================
-// SOHBET MESAJLARI
-// ============================================================================
-
 const SOHBET_MESAJLARI = [
-  { id: 1, oda: 'genel', altOda: 'genel-muhabbet', user: 'Çiftçi_Ali', msg: '🌿 Günaydın arkadaşlar, bu sene buğday fiyatları nasıl?', time: '09:15' },
-  { id: 2, oda: 'genel', altOda: 'genel-muhabbet', user: 'Ziraat_Müh', msg: '🌾 TMO 8.50 TL/kg açıkladı', time: '09:18' },
-  { id: 3, oda: 'hayvan', altOda: 'hayvan-inek', user: 'Veteriner_Kenan', msg: '🐄 Simental düve arayan var mı?', time: '09:22' },
-  { id: 4, oda: 'hayvan', altOda: 'hayvan-sus', user: 'Güvercin_Sevdalısı', msg: '🕊️ Taklacı güvercin seven var mı?', time: '09:35' },
-  { id: 5, oda: 'tarim', altOda: 'tarim-bakliyat', user: 'Bakliyatçı', msg: '🫘 Nohut fiyatları 25 TL/kg\'dan gidiyor', time: '09:42' }
+  {
+    id: 1,
+    oda: "genel",
+    altOda: "genel-muhabbet",
+    user: "Çiftçi_Ali",
+    msg: "🌿 Günaydın arkadaşlar, bu sene buğday fiyatları nasıl?",
+    time: "09:15"
+  },
+  {
+    id: 2,
+    oda: "genel",
+    altOda: "genel-muhabbet",
+    user: "Ziraat_Müh",
+    msg: "🌾 TMO 8.50 TL/kg açıkladı",
+    time: "09:18"
+  },
+  {
+    id: 3,
+    oda: "hayvan",
+    altOda: "hayvan-inek",
+    user: "Veteriner_Kenan",
+    msg: "🐄 Simental düve arayan var mı?",
+    time: "09:22"
+  },
+  {
+    id: 4,
+    oda: "hayvan",
+    altOda: "hayvan-sus",
+    user: "Güvercin_Sevdalısı",
+    msg: "🕊️ Taklacı güvercin seven var mı?",
+    time: "09:35"
+  },
+  {
+    id: 5,
+    oda: "tarim",
+    altOda: "tarim-bakliyat",
+    user: "Bakliyatçı",
+    msg: "🫘 Nohut fiyatları 25 TL/kg'dan gidiyor",
+    time: "09:42"
+  }
 ];
 
 // ============================================================================
